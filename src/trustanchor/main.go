@@ -1,6 +1,6 @@
 /*
- * Insert extra information into the Bitcoin block chain.
- * ======================================================
+ * Insert TrustAnchors into the Bitcoin block chain.
+ * =================================================
  *
  * Due to the character of the Bitcoin block chain this inserted
  * information can't be changed later on without breaking the
@@ -9,19 +9,19 @@
  * We therefore use this method to insert "TrustAnchors" into the
  * block chain. A "TrustAnchor" can be used to independently verify
  * the origin of an information and can so be used to create
- * trustworthy key/software deployment schemes. That works like thos:
+ * trustworthy key/software deployment schemes. It works like this:
  *
- * The owner of a domain can use this method for example to insert
- * JSON-encoded information like
+ * The owner of a domain uses this method to insert JSON-encoded
+ * information like
  *
  *        [[TrustAnchor:Domain:hoi-polloi.org]]
  *
  * into the block chain. This information is "timestamped" because
  * the underlaying Bitcoin transaction is timestamped. Secondly, the
- * "TrustAnchor" is linked to a Bitcoin address (the receiving address
- " for the transaction that holds the information).
+ * "TrustAnchor" is linked to a Bitcoin address (the sending address
+ " for the transaction that holds the information = public key of owner).
  *
- * To avoid race conditions where other nodes on the network see you
+ * To avoid race conditions where other nodes on the network see your
  * requested TrustAnchor and try to register the same domain name for
  * their own key, it is recommended to use a two-step approach:
  *
@@ -45,7 +45,7 @@
  * want to distribute software to users. Now these users can be sure
  * that the software is unchanged by the following procedure:
  *
- * (1) You create a hash over the spftware package. You the use
+ * (1) You create a hash over the software package. You the use
  *     Bitcoin to sign this hash with the key linked to your
  *     "TrustAnchor" for the domain. Now you publish the software,
  *     the hash and the signature on your website.
